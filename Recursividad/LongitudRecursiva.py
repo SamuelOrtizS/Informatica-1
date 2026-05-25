@@ -5,4 +5,5 @@ def longitud_cadena(cadena):
     else:
         return 1 + longitud_cadena(cadena[1:])
 
-print(longitud_cadena("Hola, mundo!"))
+texto=input("Ingrese una cadena de caracteres: ")
+print("La longitud de la cadena es: ", longitud_cadena(texto))

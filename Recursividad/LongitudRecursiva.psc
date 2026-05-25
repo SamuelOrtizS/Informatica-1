@@ -7,5 +7,8 @@ Función long <- longitud_cadena (cade)
 FinFunción
 
 Algoritmo LongitudRecursiva
-	Escribir longitud_cadena('Hola, mundo!')
+	Definir text Como Cadena
+	Escribir 'Ingrese una cadena de caracteres: '
+	Leer text
+	Escribir 'La longitud de la cadena es: ', longitud_cadena(text)
 FinAlgoritmo
