@@ -1,13 +1,10 @@
-# Constantes
 FILAS = 7
 COLUMNAS = 4
-PRECIO_GENERAL = 10000      # Filas 0-3
-PRECIO_PREFERENCIAL = 20000  # Filas 4-6
+PRECIO_GENERAL = 10000      
+PRECIO_PREFERENCIAL = 20000 
 
-# Matriz para almacenar estado de las sillas (0=libre, 1=reservada)
 sillas = [[0 for _ in range(COLUMNAS)] for _ in range(FILAS)]
 
-# Variable para almacenar el total recaudado
 total_recaudado = 0
 
 def obtener_tipo_silla(fila):
@@ -47,53 +44,50 @@ def hacer_reserva():
     print("\n--- HACER RESERVA ---")
     mostrar_sala()
     
-    try:
-        num_sillas = int(input("¿Cuántas sillas desea reservar? "))
+    
+    num_sillas = int(input("¿Cuántas sillas desea reservar? "))
         
-        if num_sillas <= 0:
-            print("✗ Ingrese una cantidad válida.")
+    if num_sillas <= 0:
+        print("✗ Ingrese una cantidad válida.")
+        return
+        
+    total_reserva = 0
+    sillas_reservadas = []
+        
+    for i in range(num_sillas):
+        print(f"\nSilla {i + 1}:")
+        fila = int(input("  Ingrese número de fila (0-6): "))
+        columna = int(input("  Ingrese número de columna (0-3): "))
+            
+        # Validar índices
+        if not (0 <= fila < FILAS and 0 <= columna < COLUMNAS):
+            print("✗ Fila o columna fuera de rango.")
             return
         
-        total_reserva = 0
-        sillas_reservadas = []
-        
-        for i in range(num_sillas):
-            print(f"\nSilla {i + 1}:")
-            fila = int(input("  Ingrese número de fila (0-6): "))
-            columna = int(input("  Ingrese número de columna (0-3): "))
+        # Validar disponibilidad
+        if sillas[fila][columna] == 1:
+            print("✗ Esta silla ya está reservada.")
+            return
             
-            # Validar índices
-            if not (0 <= fila < FILAS and 0 <= columna < COLUMNAS):
-                print("✗ Fila o columna fuera de rango.")
-                return
-            
-            # Validar disponibilidad
-            if sillas[fila][columna] == 1:
-                print("✗ Esta silla ya está reservada.")
-                return
-            
-            # Realizar la reserva
-            sillas[fila][columna] = 1
-            precio = obtener_precio_silla(fila)
-            total_reserva += precio
-            tipo = obtener_tipo_silla(fila)
-            sillas_reservadas.append((fila, columna, tipo, precio))
-            print(f"✓ Silla reservada - Fila {fila}, Columna {columna} - {tipo} (${precio})")
+        # Realizar la reserva
+        sillas[fila][columna] = 1
+        precio = obtener_precio_silla(fila)
+        total_reserva += precio
+        tipo = obtener_tipo_silla(fila)
+        sillas_reservadas.append((fila, columna, tipo, precio))
+        print(f"✓ Silla reservada - Fila {fila}, Columna {columna} - {tipo} (${precio})")
         
-        # Mostrar resumen
-        print("\n" + "="*50)
-        print("           RESUMEN DE RESERVA")
-        print("="*50)
-        for fila, columna, tipo, precio in sillas_reservadas:
-            print(f"Fila {fila}, Columna {columna} - {tipo}: ${precio}")
-        print("-"*50)
-        print(f"TOTAL A PAGAR: ${total_reserva}")
-        print("="*50)
+    # Mostrar resumen
+    print("\n" + "="*50)
+    print("           RESUMEN DE RESERVA")
+    print("="*50)
+    for fila, columna, tipo, precio in sillas_reservadas:
+        print(f"Fila {fila}, Columna {columna} - {tipo}: ${precio}")
+    print("-"*50)
+    print(f"TOTAL A PAGAR: ${total_reserva}")
+    print("="*50)
         
-        total_recaudado += total_reserva
-        
-    except ValueError:
-        print("✗ Entrada inválida. Ingrese números enteros.")
+    total_recaudado += total_reserva
 
 def cancelar_reserva():
     global total_recaudado
@@ -119,7 +113,6 @@ def cancelar_reserva():
     tipo = obtener_tipo_silla(fila)
     precio = obtener_precio_silla(fila)
         
-    # Restar del total recaudado
     total_recaudado -= precio
         
     print(f"✓ Reserva cancelada - Fila {fila}, Columna {columna} - {tipo}")
@@ -131,7 +124,6 @@ def mostrar_total_recaudado():
     print("    TOTAL RECAUDADO POR RESERVAS")
     print("="*50)
     
-    # Calcular total sin descontar cancelaciones
     total_real = 0
     for fila in range(FILAS):
         for columna in range(COLUMNAS):

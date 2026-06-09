@@ -1,13 +1,10 @@
-# Información del restaurante
 NOMBRE_RESTAURANTE = "Las delicias de Juan"
 DIRECCION = "Avenida 6 con Calle 20"
 DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
-# Arreglo para almacenar los menús
 menu_semana = [""] * 7
 
 def mostrar_menu_principal():
-    """Muestra el menú principal de opciones"""
     print("\n" + "="*50)
     print("        SISTEMA DE MENÚ - " + NOMBRE_RESTAURANTE)
     print("="*50)
@@ -20,36 +17,33 @@ def mostrar_menu_principal():
     print("="*50)
 
 def guardar_menu():
-    """Guarda el nombre del menú para un día específico"""
     print("\nDías de la semana:")
     for i in range(7):
         print(f"{i}: {DIAS_SEMANA[i]}")
 
-        dia = int(input("Ingrese el número del día (0-6): "))
-        if 0 <= dia <= 6:
-            menu = input(f"Ingrese el nombre del menú para {DIAS_SEMANA[dia]}: ")
-            menu_semana[dia] = menu
-            print(f"✓ Menú guardado correctamente para {DIAS_SEMANA[dia]}")
-        else:
-            print("✗ Número de día inválido. Intente nuevamente.")
+    dia = int(input("Ingrese el número del día (0-6): "))
+    if 0 <= dia <= 6:
+        menu = input(f"Ingrese el nombre del menú para {DIAS_SEMANA[dia]}: ")
+        menu_semana[dia] = menu
+        print(f"✓ Menú guardado correctamente para {DIAS_SEMANA[dia]}")
+    else:
+        print("✗ Número de día inválido. Intente nuevamente.")
 
 def consultar_por_dia():
-    """Consulta qué menú se prepara en un día específico"""
     print("\nDías de la semana:")
     for i in range(7):
         print(f"{i}: {DIAS_SEMANA[i]}")
     
-        dia = int(input("Ingrese el número del día (0-6): "))
-        if 0 <= dia <= 6:
-            if menu_semana[dia]:
-                print(f"\nEl {DIAS_SEMANA[dia]} se prepara: {menu_semana[dia]}")
-            else:                
-                print(f"✗ No hay menú registrado para {DIAS_SEMANA[dia]}")
-        else:
-            print("✗ Número de día inválido.")
+    dia = int(input("Ingrese el número del día (0-6): "))
+    if 0 <= dia <= 6:
+        if menu_semana[dia]:
+            print(f"\nEl {DIAS_SEMANA[dia]} se prepara: {menu_semana[dia]}")
+        else:                
+            print(f"✗ No hay menú registrado para {DIAS_SEMANA[dia]}")
+    else:
+        print("✗ Número de día inválido.")
 
 def consultar_por_menu():
-    """Consulta en qué día se prepara un menú específico"""
     menu_buscado = input("Ingrese el nombre del menú a buscar: ").lower()
     
     encontrado = False
@@ -63,7 +57,6 @@ def consultar_por_menu():
         print(f"✗ El menú '{menu_buscado}' no está registrado en la semana.")
 
 def mostrar_informacion():
-    """Muestra la información básica del restaurante"""
     print("\n" + "="*50)
     print("       INFORMACIÓN DEL RESTAURANTE")
     print("="*50)
@@ -72,16 +65,13 @@ def mostrar_informacion():
     print("="*50)
 
 def mostrar_semana_completa():
-    """Muestra todos los menús de la semana"""
     print("\n" + "="*50)
     print("       MENÚ DE LA SEMANA")
     print("="*50)
     
-    hay_menus = False
     for i in range(7):
         if menu_semana[i]:
             print(f"{DIAS_SEMANA[i]}: {menu_semana[i]}")
-            hay_menus = True
         else:
             print(f"{DIAS_SEMANA[i]}: Sin menú registrado")
     
