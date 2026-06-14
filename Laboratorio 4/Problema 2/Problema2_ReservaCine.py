@@ -5,8 +5,6 @@ PRECIO_PREFERENCIAL = 20000
 
 sillas = [[0 for _ in range(COLUMNAS)] for _ in range(FILAS)]
 
-total_recaudado = 0
-
 def obtener_tipo_silla(fila):
     if fila <= 3:
         return "General"
@@ -39,8 +37,6 @@ def mostrar_sala():
     print("="*50)
 
 def hacer_reserva():
-    global total_recaudado
-    
     print("\n--- HACER RESERVA ---")
     mostrar_sala()
     
@@ -86,12 +82,8 @@ def hacer_reserva():
     print("-"*50)
     print(f"TOTAL A PAGAR: ${total_reserva}")
     print("="*50)
-        
-    total_recaudado += total_reserva
 
 def cancelar_reserva():
-    global total_recaudado
-    
     print("\n--- CANCELAR RESERVA ---")
     mostrar_sala()
     
@@ -113,8 +105,6 @@ def cancelar_reserva():
     tipo = obtener_tipo_silla(fila)
     precio = obtener_precio_silla(fila)
         
-    total_recaudado -= precio
-        
     print(f"✓ Reserva cancelada - Fila {fila}, Columna {columna} - {tipo}")
     print(f"  Reembolso: ${precio}")
         
@@ -124,11 +114,11 @@ def mostrar_total_recaudado():
     print("    TOTAL RECAUDADO POR RESERVAS")
     print("="*50)
     
-    total_real = 0
+    total_recaudado = 0
     for fila in range(FILAS):
         for columna in range(COLUMNAS):
             if sillas[fila][columna] == 1:
-                total_real += obtener_precio_silla(fila)
+                totalRecaudado += obtener_precio_silla(fila)
     
     print(f"Total recaudado actual: ${total_real}")
     print("="*50)
