@@ -1,0 +1,33 @@
+Analisis
+Datos de entrada
+Descripcion                             | nombre de la variable | tipo de dato
+Cantidad de sillas a reservar          | num_sillas            | entero
+Numero de fila de la silla             | fila                 | entero
+Numero de columna de la silla          | columna              | entero
+Opcion del menu                        | opcion               | cadena
+Sala seleccionada                      | nueva_sala           | entero
+
+---------------------------------------------------------------------
+Proceso
+Descripcion del proceso realizado
+Se crean las constantes y matrices para representar las dos salas de cine.
+Se identifica el tipo de silla segun la fila (general o preferencial).
+Se calcula el precio de cada silla segun su tipo.
+Se lee y valida la informacion ingresada por el usuario.
+Se permite mostrar el estado de una sala con sus sillas libres o reservadas.
+Se permite reservar una o varias sillas en la sala activa.
+Se permite cancelar una reserva existente.
+Se calcula el total recaudado por sala y el total general del sistema.
+Se muestra un menu interactivo y se ejecuta la Opcion seleccionada hasta que el usuario elige salir.
+
+------------------------------------------------------------------------
+Datos de salida
+Descripcion                             | nombre de la variable | tipo de dato
+Mensaje de confirmacion de reserva     | mensaje de consola   | texto
+Mensaje de cancelacion de reserva      | mensaje de consola   | texto
+Resumen de reserva                      | sillas_reservadas    | lista de tuplas
+Total a pagar por la reserva           | total_reserva        | entero
+Subtotal por sala                       | subtotal_sala        | entero
+Total recaudado general                 | total_total          | entero
+Estado de la sala                       | matriz de sillas     | lista de listas
+
