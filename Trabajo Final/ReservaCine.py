@@ -128,16 +128,29 @@ def cancelar_reserva(sillas, numero_sala):
 
 def mostrar_total_recaudado(sillas, numero_sala):
     print("\n" + "="*50)
-    print(f"    TOTAL RECAUDADO POR RESERVAS - SALA {numero_sala + 1}")
+    print("    TOTAL RECAUDADO POR RESERVAS")
     print("="*50)
-    
-    total_recaudado = 0
-    for fila in range(FILAS):
-        for columna in range(COLUMNAS):
-            if sillas[fila][columna] == 1:
-                total_recaudado += obtener_precio_silla(fila)
-    
-    print(f"Total recaudado actual: ${total_recaudado}")
+
+    total_general = 0
+    total_preferencial = 0
+
+    for sala_index, sala in enumerate(salas):
+        subtotal_sala = 0
+        for fila in range(FILAS):
+            for columna in range(COLUMNAS):
+                if sala[fila][columna] == 1:
+                    subtotal_sala += obtener_precio_silla(fila)
+
+        if sala_index == 0:
+            total_general = subtotal_sala
+        else:
+            total_preferencial = subtotal_sala
+
+        print(f"Sala {sala_index + 1}: ${subtotal_sala}")
+
+    total_total = total_general + total_preferencial
+    print("-"*50)
+    print(f"Total general: ${total_total}")
     print("="*50)
 
 def mostrar_menu_principal(sala_actual):
